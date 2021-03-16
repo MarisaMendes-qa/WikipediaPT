@@ -1,5 +1,8 @@
 package steps;
 
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import cucumber.api.java.pt.Dado;
 import cucumber.api.java.pt.Entao;
 import cucumber.api.java.pt.Quando;
@@ -13,7 +16,7 @@ public class Post extends Base{
     public Post(Base base) { //construtor são as setas do Base que contém o Selenium para os steps
         this.base = base; // a minha base (this.base) vai chamar a Classe java (Base.java) my.base vai receber a Base.java
     }
-
+/*
     @Dado("^que acesso o Wikipedia em Portugues$")
     public void queAcessoOWikipediaEmPortugues() {
 
@@ -29,6 +32,27 @@ public class Post extends Base{
     }
 
     @Entao("^exibe a expressao \"([^\"]*)\" no titulo da guia$")
+    public void exibeAExpressaoNoTituloDaGuia(String produto)  {
+
+        assertTrue(base.driver.getTitle().contains(produto));
+
+    }
+*/
+    @Given("^que acesso o Wikipedia em Portugues$")
+    public void queAcessoOWikipediaEmPortugues() {
+
+        base.driver.get(base.url); //Abre o navegador no site alvo (extendendo da base)
+
+    }
+
+    @When("^pesquiso por \"([^\"]*)\"$")
+    public void pesquisoPor(String produto) {
+
+        base.driver.findElement(By.id("searchInput")).sendKeys(produto + Keys.ENTER);
+
+    }
+
+    @Then("^exibe a expressao \"([^\"]*)\" no titulo da guia$")
     public void exibeAExpressaoNoTituloDaGuia(String produto)  {
 
         assertTrue(base.driver.getTitle().contains(produto));
