@@ -32,13 +32,13 @@ public class Artigo {
 
         //Pesquisar por "Ovo de Páscoa"
         driver.findElement(By.id("searchInput")).sendKeys("Ovo de Páscoa");
-        driver.findElement(By.id("searchButton")).click(); //Clica na Lupa
+        //driver.findElement(By.id("searchButton")).click(); //Clica na Lupa
+        driver.findElement(By.cssSelector("button.wvui-button")).click();
 
         //Validar o título da página de retorno
         //assertEquals("Ovo de Páscoa – Wikipédia, a enciclopédia livre", driver.getTitle());
         assertTrue(driver.getTitle().contains("Ovo de Páscoa"));
         //assertEquals("Ovo de Páscoa", driver.findElement(By.id("firstHeading")).getText());
-
     }
 
     @After//O que acontece apos do teste
